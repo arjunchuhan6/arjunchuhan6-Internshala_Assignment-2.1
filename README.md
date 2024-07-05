@@ -8,4 +8,5 @@ Functionalities:-
 3. Delete Record of Student.
 
 Github Link:- 
-https://github.com/arjunchuhan6/Internshala_Assignment-2.1.git
+
+https://github.com/arjunchuhan6/arjunchuhan6-Internshala_Assignment-2.1.git
