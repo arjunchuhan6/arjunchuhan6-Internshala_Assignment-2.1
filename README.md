@@ -10,3 +10,7 @@ Functionalities:-
 Github Link:- 
 
 https://github.com/arjunchuhan6/arjunchuhan6-Internshala_Assignment-2.1.git
+
+link:
+
+https://arjunchuhan6.github.io/arjunchuhan6-Internshala_Assignment-2.1/
