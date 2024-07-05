@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Details</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<header>
+		<!-- heading added for the website -->
+		<h1 class="text-center p-1">Student Registration Form</h1>
+		<p class="text-center">
+		  Where student Registration done and save data
+		</p>
+	  </header>
+	  <main>
+		<div class="container">
+		  <!-- form to take details and add to the table -->
+		  <div class="form">
+			<form  action="" id="student-form" onsubmit="CData()">
+			  <h2 class="f-heading">Student Details</h2>
+			  <input  type="number" name="studId" max="999" placeholder="Student Id" required/>
+			  <input type="text" name="name" minlength="3" maxlength="12" placeholder="Student Name"  required/>
+			  <input type="email" name="email" placeholder="Email Id" required/>
+			  <input type="number" name="contact"  min="5000000000" max="9999999999" maxlength="10" placeholder="Contact No" required/>
+			  <button type="submit" id="addBtn">Add Student</button>
+			</form>
+		  </div>
+		  <!-- the data of the students that has been added by the user -->
+  
+		  <div class="data">
+			<div class="data-heading">
+			  <h2>Id</h2>
+			  <h2>Name</h2>
+			  <h2>Email</h2>
+			  <h2>Contact</h2>
+			  <h2>Action</h2>
+			</div>
+			<div class="data-contents">
+			  <!-- dynamic data will appear below  -->
+			</div>
+		  </div>
+		</div>
+	  </main>
+  
+	  <script>
+		const form = document.getElementById("student-form");
+		let button = document.getElementById("addBtn");
+		const dataContents = document.querySelector(".data-contents");
+		dataContents.style.overflowY = "scroll";
+		// student array of objects from local storage
+		const studentData = JSON.parse(localStorage.getItem("studentData")) || [];
+		// data creation function
+		const CData = () => {
+		  event.preventDefault();
+		  // creating new object of new student
+		  const Data = {
+			name: form.name.value,
+			email: form.email.value,
+			studId: form.studId.value,
+			contact: form.contact.value,
+		  };
+		  studentData.push(Data);
+		  localStorage.setItem("studentData", JSON.stringify(studentData));
+		  button.innerText = "Add Student";
+		  SData();
+		  // making form values empty
+		  form.name.value = "";
+		  form.studId.value = "";
+		  form.email.value = "";
+		  form.contact.value = "";
+		};
+  
+		const editData = (index) => {
+		  button.innerText = "Save Edits";
+		  let editStudentData = studentData[index];
+		  // adding clicked item values to form
+		  form.name.value = editStudentData.name;
+		  form.studId.value = editStudentData.studId;
+		  form.email.value = editStudentData.email;
+		  form.contact.value = editStudentData.contact;
+		  // deleting that item
+		  deleteData(index, true);
+		};
+  
+		const deleteData = (index, isEdit = false) => {
+		  // checking if function is called from edit function if so directly deleting it 
+		  if (isEdit) {
+			studentData.splice(index, 1);
+			localStorage.setItem("studentData", JSON.stringify(studentData));
+			SData();
+		  } else {
+			if (window.confirm("Are you shure, you want to delete ?")) {
+			  studentData.splice(index, 1);
+			  localStorage.setItem("studentData", JSON.stringify(studentData));
+			  SData();
+			}
+		  }
+		};
+		// show function for fetching data from local storage and show the data to the user
+		const SData = () => {
+		  if (studentData.length <= 0) {
+			dataContents.innerHTML = "<p>No Registered Data</p>";
+		  } else {
+			dataContents.innerHTML = "";
+		  }
+		  // mapping the student records that is fetched from the local storage 
+		  studentData.map((item, index) => {
+			const dataContent = document.createElement("div");
+			dataContent.classList.add("data-content");
+			dataContent.innerHTML = `
+				<p>${item.studId}</p>
+				<p>${item.name}</p>
+				<p>${item.email}</p>
+				<p class="np">${item.contact}</p>
+				<div class="op-btn">
+				  <i onclick="editData(${index})" class="fa fa-edit"></i>
+				  <i onclick="deleteData(${index})" class="fa fa-trash"></i>
+				</div>
+  
+			`;
+			dataContents.appendChild(dataContent);
+		  });
+		};
+  
+		// calling SData function at the start of the script
+		SData();
+	  </script>
+</body>
+</html>

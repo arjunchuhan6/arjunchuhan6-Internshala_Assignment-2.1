@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-color: var(--bg);
+  padding: 0 2rem;
+  min-height: 100vh;
+}
+.text-center {
+  color: white;
+  text-align: center;
+}
+.p-1 {
+  padding-top: 30px;
+}
+header p {
+  padding-top: 10px;
+  font-size: 22px;
+}
+.container {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  gap: 10px;
+  min-height: 80vh;
+}
+.form {
+  width: 55%;
+  min-height: 23rem;
+  background-color: var(--white);
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 5px 10px 10px #000000;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form input {
+  margin: 10px;
+  padding: 14px;
+  outline: none;
+  border: none;
+  color: black;
+  border-radius: 15px;
+}
+
+form button {
+  margin: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.data {
+  width: 100%;
+  min-height: 23rem;
+  max-height: 23rem;
+
+  padding: 1rem;
+  margin: 1rem 0;
+  margin-bottom: 2rem;
+  box-shadow: 5px 10px 10px #000000;
+}
+
+.data-heading {
+  display: grid;
+  grid-template-columns: 4fr 2fr 4fr 4fr 1fr;
+  padding: 0.8rem 0.6rem;
+}
+.data-contents {
+  max-height: 18rem;
+}
+.data-content {
+  display: grid;
+  grid-template-columns: 4fr 2fr 4fr 4fr 1fr;
+  padding: 0.8rem 0.6rem;
+  background: inherit;
+  margin: 1rem 0;
+  align-items: center;
+  border: #f0a500;
+}
+.data-content p {
+  font-size: 1.4rem;
+  overflow: hidden;
+}
+
+.op-btn {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.op-btn .fa-edit {
+  color: green;
+  cursor: pointer;
+}
+.op-btn .fa-trash {
+  color: red;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1120px) {
+  body {
+    height: auto;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .data,
+  .form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .data {
+    overflow: scroll;
+  }
+  .data-heading {
+    width: 200%;
+  }
+  .data-contents {
+    width: 200%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .data,
+  .form {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 590px) {
+  .data {
+    overflow: scroll;
+  }
+  .data-heading {
+    width: 200%;
+  }
+  .data-contents {
+    width: 200%;
+    max-height: 18rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .data {
+    overflow: scroll;
+  }
+}
